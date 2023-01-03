@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ConfigDemo": {
+      "commandName": "Project",
+      "commandLineArgs": "email=sudons@msn.cn",
+      "environmentVariables": {
+        "SUN_server": "www.ankium.com",
+        "SUN_phone": "15083829025"
+      }
+    }
+  }
+}
