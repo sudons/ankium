@@ -5,7 +5,7 @@
         static async Task Main(string[] args)
         {
 
-            //using TestDbContext ctx = new TestDbContext();
+            //using HelloDbContext ctx = new HelloDbContext();
             //var b1 = new Book { AuthorName = "云文", Title = "零基础学编程", Price = 59.8, PubTime = new DateTime(2019, 3, 1) };
             //var b2 = new Book { AuthorName = "冯杰", Title = "图解算法进阶", Price = 99.5, PubTime = new DateTime(2012, 10, 17) };
             //var b3 = new Book { AuthorName = "云文", Title = "混音入门教程", Price = 69.0, PubTime = new DateTime(2020, 5, 28) };
@@ -18,7 +18,7 @@
             //ctx.Books.Add(b5);
             //await ctx.SaveChangesAsync();
 
-            using TestDbContext ctx = new TestDbContext();
+            using HelloDbContext ctx = new HelloDbContext();
 
             Console.WriteLine("**************所有书****************");
             foreach (Book book in ctx.Books)
