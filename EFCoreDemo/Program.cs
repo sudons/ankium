@@ -1,4 +1,6 @@
-﻿namespace EFCoreDemo
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace EFCoreDemo
 {
     internal class Program
     {
@@ -20,22 +22,27 @@
 
             using HelloDbContext ctx = new HelloDbContext();
 
+            /*
             Console.WriteLine("**************所有书****************");
             foreach (Book book in ctx.Books)
             {
                 Console.WriteLine($"Id={book.Id},Title={book.Title},Price={book.Price},AuthorName={book.AuthorName}");
             }
+            */
 
             Console.WriteLine("*********所有价格高于80元的书**********");
-            IEnumerable<Book> books1 = ctx.Books.Where(b => b.Price > 80);
+            IQueryable<Book> books1 = ctx.Books.Where(b => b.Price > 80);
+            //通过ToQueryString的方式查看EFCore中查询操作的SQL语句
+            Console.WriteLine(books1.ToQueryString());
             foreach (Book book in books1)
             {
-                Console.WriteLine($"Id={book.Id},Title={book.Title},Price={book.Price}");
+                Console.WriteLine($"Id={book.Id},Title={book.Title},AuthorName={book.AuthorName},PubTime={book.PubTime},Price={book.Price}");
             }
 
             //Book bk1 = ctx.Books.Single(b => b.Title == "零基础学编程");
             //Console.WriteLine($"Id={bk1.Id},Title={bk1.Title},Price={bk1.Price},AuthorName={bk1.AuthorName}");
 
+            /*
             Book? bk2 = ctx.Books.FirstOrDefault(b => b.Id == 9);
             if (bk2==null)
             {
@@ -57,6 +64,7 @@
             {
                 Console.WriteLine($"作者:{g.AuthorName},图书数量:{g.BooksCount},最高价格:{g.MaxPrice}");
             }
+            */
 
             //更新数据
             //var books3 = ctx.Books.Where(b => b.Title == "拜厄钢琴教程");
@@ -67,11 +75,13 @@
             //await ctx.SaveChangesAsync();
 
             //删除数据
+            /*
             var books4 = ctx.Books.Where(b => b.Title == "拜厄钢琴教程");
             foreach (Book b in books4)
             {
                 ctx.Remove(b);
             }
+            */
             await ctx.SaveChangesAsync();
         }
     }
