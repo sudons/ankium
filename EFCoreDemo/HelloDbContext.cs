@@ -13,6 +13,8 @@ namespace EFCoreDemo
     {
         //定义实体在数据库中的默认表名
         public DbSet<Book> Books { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<Dog> Dogs { get; set; }
         //配置数据库连接字符串
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

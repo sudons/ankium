@@ -4,6 +4,7 @@ using EFCoreDemo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreDemo.Migrations
 {
     [DbContext(typeof(HelloDbContext))]
-    partial class HelloDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230901154310_AddPerson")]
+    partial class AddPerson
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,22 +54,6 @@ namespace EFCoreDemo.Migrations
                     b.ToTable("T_Books", (string)null);
                 });
 
-            modelBuilder.Entity("EFCoreDemo.Dog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Dogs");
-                });
-
             modelBuilder.Entity("EFCoreDemo.Person", b =>
                 {
                     b.Property<int>("Id")
@@ -83,9 +70,6 @@ namespace EFCoreDemo.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Salary")
-                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
