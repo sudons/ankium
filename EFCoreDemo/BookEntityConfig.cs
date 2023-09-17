@@ -14,7 +14,7 @@ namespace EFCoreDemo
         {
             builder.ToTable("T_Books");
             builder.Property(e => e.Title).HasMaxLength(50).IsRequired();
-            builder.Property(e=>e.AuthorName).HasMaxLength(50).IsRequired();
+            builder.Property(e => e.AuthorName).HasMaxLength(50).HasColumnType("varchar200");
         }
     }
 }

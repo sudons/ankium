@@ -26,6 +26,12 @@ namespace EFCoreDemo
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+            modelBuilder.Entity<Book>().ToView("BooksView");
+            modelBuilder.Entity<Book>().Ignore(b => b.PubTime);
+            modelBuilder.Entity<Book>().Property(b => b.Title).HasColumnName("BookTitle");
+            modelBuilder.Entity<Book>().Property(b=>b.AuthorName).HasColumnType("varchar(200)");
+            modelBuilder.Entity<Dog>().HasKey(b => b.Name);
+            modelBuilder.Entity<Person>().HasIndex(P => P.Name).IsUnique();
         }
     }
 }
